@@ -3,6 +3,7 @@ package com.firefly.domain.product.catalog.infra;
 import com.firefly.common.product.sdk.api.FeeStructureApi;
 import com.firefly.common.product.sdk.api.ProductBundleApi;
 import com.firefly.common.product.sdk.api.ProductCategoryApi;
+import com.firefly.common.product.sdk.api.ProductFeeComponentApi;
 import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
 import com.firefly.common.product.sdk.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class ClientFactory {
     @Bean
     public ProductBundleApi productBundleApi() {
         return new ProductBundleApi(apiClient);
+    }
+
+    @Bean
+    public ProductFeeComponentApi productFeeComponentApi() {
+        return new ProductFeeComponentApi(apiClient);
     }
 
 }

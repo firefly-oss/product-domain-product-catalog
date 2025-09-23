@@ -60,4 +60,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductBundleCommand(productBundleId));
     }
 
+    @SagaStep(id = STEP_REGISTER_FEE_COMPONENT, compensate = COMPENSATE_REMOVE_FEE_COMPONENT, dependsOn = STEP_REGISTER_FEE_STRUCTURE)
+    @StepEvent(type = EVENT_FEE_COMPONENT_REGISTERED)
+    public Mono<UUID> registerFeeComponent(RegisterFeeComponentCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withFeeStructureId(ctx.getVariableAs(CTX_FEE_STRUCTURE_ID, UUID.class)))
+                .doOnNext(feeComponentId -> ctx.variables().put(CTX_FEE_COMPONENT_ID, feeComponentId));
+    }
+
+    public Mono<Void> removeFeeComponent(UUID feeComponentId) {
+        return commandBus.send(new RemoveFeeComponentCommand(feeComponentId));
+    }
+
 }

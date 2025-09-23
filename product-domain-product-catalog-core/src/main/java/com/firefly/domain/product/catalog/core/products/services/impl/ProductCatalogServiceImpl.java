@@ -29,6 +29,7 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerProductCategory, command.getProductCategory())
                 .forStep(RegisterProductSaga::registerFeeStructure, command.getFeeStructure())
                 .forStep(RegisterProductSaga::registerProductBundle, command.getProductBundle())
+                .forStep(RegisterProductSaga::registerFeeComponent, command.getFeeComponent())
                 .build();
 
         return engine.execute(RegisterProductSaga.class, inputs);
