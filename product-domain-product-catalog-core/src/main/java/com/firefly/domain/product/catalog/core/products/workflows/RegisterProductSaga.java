@@ -12,8 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-import static com.firefly.domain.product.catalog.core.utils.constants.GlobalConstants.CTX_FEE_STRUCTURE_ID;
-import static com.firefly.domain.product.catalog.core.utils.constants.GlobalConstants.CTX_PRODUCT_CATEGORY_ID;
+import static com.firefly.domain.product.catalog.core.utils.constants.GlobalConstants.*;
 import static com.firefly.domain.product.catalog.core.utils.constants.RegisterProductConstants.*;
 
 
@@ -43,11 +42,22 @@ public class RegisterProductSaga {
     @StepEvent(type = EVENT_FEE_STRUCTURE_REGISTERED)
     public Mono<UUID> registerFeeStructure(RegisterFeeStructureCommand cmd, SagaContext ctx) {
         return commandBus.send(cmd)
-                .doOnNext(productCategoryId -> ctx.variables().put(CTX_FEE_STRUCTURE_ID, productCategoryId));
+                .doOnNext(freeStructureId -> ctx.variables().put(CTX_FEE_STRUCTURE_ID, freeStructureId));
     }
 
     public Mono<Void> removeFeeStructure(UUID feeStructureId) {
         return commandBus.send(new RemoveFeeStructureCommand(feeStructureId));
+    }
+
+    @SagaStep(id = STEP_REGISTER_PRODUCT_BUNDLE, compensate = COMPENSATE_REMOVE_PRODUCT_BUNDLE)
+    @StepEvent(type = EVENT_PRODUCT_BUNDLE_REGISTERED)
+    public Mono<UUID> registerProductBundle(RegisterProductBundleCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd)
+                .doOnNext(productBundleId -> ctx.variables().put(CTX_PRODUCT_BUNDLE_ID, productBundleId));
+    }
+
+    public Mono<Void> removeProductBundle(UUID productBundleId) {
+        return commandBus.send(new RemoveProductBundleCommand(productBundleId));
     }
 
 }

@@ -40,7 +40,7 @@ public class RegisterProductCommand extends ProductDTO implements Command<UUID> 
     private List<RegisterProductDocumentationRequirementCommand> productDocumentationRequirements;
     private RegisterProductCategoryCommand productCategory;
     private RegisterProductSubtypeCommand productSubtype;
-    private List<RegisterProductBundleCommand> productBundles;
+    private RegisterProductBundleCommand productBundle;
     private RegisterFeeApplicationRuleCommand feeApplicationRule;
     private RegisterFeeComponentCommand feeComponent;
     private RegisterFeeStructureCommand feeStructure;
