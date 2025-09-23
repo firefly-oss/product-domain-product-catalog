@@ -4,7 +4,8 @@ import com.firefly.common.domain.cqrs.command.Command;
 
 import java.util.UUID;
 
-public record RemoveFeeComponentCommand(
-        UUID feeComponentId,
-        UUID feeStructureId
+public record RemoveFeeApplicationRuleCommand(
+        UUID feeApplicationRuleId,
+        UUID feeStructureId,
+        UUID componentId
 ) implements Command<Void>{}

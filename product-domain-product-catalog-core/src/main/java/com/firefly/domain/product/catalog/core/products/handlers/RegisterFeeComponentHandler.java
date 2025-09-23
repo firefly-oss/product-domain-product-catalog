@@ -2,6 +2,7 @@ package com.firefly.domain.product.catalog.core.products.handlers;
 
 import com.firefly.common.domain.cqrs.annotations.CommandHandlerComponent;
 import com.firefly.common.domain.cqrs.command.CommandHandler;
+import com.firefly.common.product.sdk.api.FeeApplicationRuleApi;
 import com.firefly.common.product.sdk.api.ProductFeeComponentApi;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterFeeComponentCommand;
 import reactor.core.publisher.Mono;

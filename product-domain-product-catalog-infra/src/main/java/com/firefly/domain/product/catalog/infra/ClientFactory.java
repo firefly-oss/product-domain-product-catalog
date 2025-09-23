@@ -1,5 +1,6 @@
 package com.firefly.domain.product.catalog.infra;
 
+import com.firefly.common.product.sdk.api.FeeApplicationRuleApi;
 import com.firefly.common.product.sdk.api.FeeStructureApi;
 import com.firefly.common.product.sdk.api.ProductBundleApi;
 import com.firefly.common.product.sdk.api.ProductCategoryApi;
@@ -49,6 +50,11 @@ public class ClientFactory {
     @Bean
     public ProductFeeComponentApi productFeeComponentApi() {
         return new ProductFeeComponentApi(apiClient);
+    }
+
+    @Bean
+    public FeeApplicationRuleApi feeApplicationRuleApi() {
+        return new FeeApplicationRuleApi(apiClient);
     }
 
 }

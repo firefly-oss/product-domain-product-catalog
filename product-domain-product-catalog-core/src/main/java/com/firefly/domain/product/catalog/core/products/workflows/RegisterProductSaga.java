@@ -67,8 +67,22 @@ public class RegisterProductSaga {
                 .doOnNext(feeComponentId -> ctx.variables().put(CTX_FEE_COMPONENT_ID, feeComponentId));
     }
 
-    public Mono<Void> removeFeeComponent(UUID feeComponentId) {
-        return commandBus.send(new RemoveFeeComponentCommand(feeComponentId));
+    public Mono<Void> removeFeeComponent(UUID feeComponentId, SagaContext ctx) {
+        return commandBus.send(new RemoveFeeComponentCommand(feeComponentId, ctx.getVariableAs(CTX_FEE_STRUCTURE_ID, UUID.class)));
+    }
+
+    @SagaStep(id = STEP_REGISTER_FEE_APPLICATION_RULE, compensate = COMPENSATE_REMOVE_FEE_APPLICATION_RULE, dependsOn = {STEP_REGISTER_FEE_COMPONENT, STEP_REGISTER_FEE_STRUCTURE})
+    @StepEvent(type = EVENT_FEE_APPLICATION_RULE_REGISTERED)
+    public Mono<UUID> registerFeeApplicationRule(RegisterFeeApplicationRuleCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd
+                .withFeeComponentId(ctx.getVariableAs(CTX_FEE_COMPONENT_ID, UUID.class)));
+    }
+
+    public Mono<Void> removeFeeApplicationRule(UUID feeApplicationRuleId, SagaContext ctx) {
+        return commandBus.send(new RemoveFeeApplicationRuleCommand(
+                feeApplicationRuleId,
+                ctx.getVariableAs(CTX_FEE_STRUCTURE_ID, UUID.class),
+                ctx.getVariableAs(CTX_FEE_COMPONENT_ID, UUID.class)));
     }
 
 }

@@ -7,5 +7,6 @@ public class GlobalConstants {
     public static final String CTX_FEE_STRUCTURE_ID = "feeStructureId";
     public static final String CTX_PRODUCT_BUNDLE_ID = "productBundleId";
     public static final String CTX_FEE_COMPONENT_ID = "feeComponentId";
+    public static final String CTX_FEE_APPLICATION_RULE_ID = "feeApplicationRuleId";
 
 }

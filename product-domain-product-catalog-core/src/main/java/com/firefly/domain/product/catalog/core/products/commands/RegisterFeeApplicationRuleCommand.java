@@ -26,4 +26,10 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterFeeApplicationRuleCommand extends FeeApplicationRuleDTO implements Command<UUID> {
+    private UUID feeComponentId;
+
+    public RegisterFeeApplicationRuleCommand withFeeComponentId(UUID feeComponentId) {
+        this.setFeeComponentId(feeComponentId);
+        return this;
+    }
 }
