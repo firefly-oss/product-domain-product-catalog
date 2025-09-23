@@ -26,4 +26,12 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductSubtypeCommand extends ProductCategorySubtypeDTO implements Command<UUID> {
+
+    private UUID productCategoryId;
+
+    public RegisterProductSubtypeCommand withProductCategoryId(UUID productCategoryId) {
+        this.setProductCategoryId(productCategoryId);
+        return this;
+    }
+
 }

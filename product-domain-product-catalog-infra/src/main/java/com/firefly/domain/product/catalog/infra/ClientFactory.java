@@ -6,6 +6,7 @@ import com.firefly.common.product.sdk.api.ProductBundleApi;
 import com.firefly.common.product.sdk.api.ProductCategoryApi;
 import com.firefly.common.product.sdk.api.ProductFeeComponentApi;
 import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
+import com.firefly.common.product.sdk.api.ProductSubtypeApi;
 import com.firefly.common.product.sdk.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +56,11 @@ public class ClientFactory {
     @Bean
     public FeeApplicationRuleApi feeApplicationRuleApi() {
         return new FeeApplicationRuleApi(apiClient);
+    }
+
+    @Bean
+    public ProductSubtypeApi productSubtypeApi() {
+        return new ProductSubtypeApi(apiClient);
     }
 
 }

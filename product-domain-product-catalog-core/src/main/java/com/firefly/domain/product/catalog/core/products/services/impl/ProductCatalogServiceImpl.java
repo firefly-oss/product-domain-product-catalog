@@ -27,6 +27,7 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
     public Mono<SagaResult> registerProduct(RegisterProductCommand command) {
         StepInputs inputs = StepInputs.builder()
                 .forStep(RegisterProductSaga::registerProductCategory, command.getProductCategory())
+                .forStep(RegisterProductSaga::registerProductSubtype, command.getProductSubtype())
                 .forStep(RegisterProductSaga::registerFeeStructure, command.getFeeStructure())
                 .forStep(RegisterProductSaga::registerProductBundle, command.getProductBundle())
                 .forStep(RegisterProductSaga::registerFeeComponent, command.getFeeComponent())
