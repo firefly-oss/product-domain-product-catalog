@@ -28,21 +28,22 @@ import java.util.UUID;
 @Data
 public class RegisterProductCommand extends ProductDTO implements Command<UUID> {
 
-    private List<RegisterProductFeatureCommand> features;
-    private List<RegisterProductPricingCommand> pricing;
-    private List<RegisterProductDocumentationCommand> documentation;
-    private List<RegisterProductLifecycleCommand> lifecycle;
-    private List<RegisterProductLimitCommand> limits;
-    private List<RegisterProductLocalizationCommand> localizations;
-    private List<RegisterProductVersionCommand> versions;
-    private List<RegisterProductFeeStructureCommand> feeStructures;
-    private List<RegisterProductRelationshipCommand> relationships;
-    private List<RegisterProductDocumentationRequirementCommand> documentationRequirements;
-    private RegisterProductCategoryCommand category;
-    private RegisterProductSubtypeCommand subtype;
-    private List<RegisterProductBundleCommand> bundles;
+    private List<RegisterProductFeatureCommand> productFeatures;
+    private List<RegisterProductPricingCommand> productPricing;
+    private List<RegisterProductDocumentationCommand> productDocumentation;
+    private List<RegisterProductLifecycleCommand> productLifecycle;
+    private List<RegisterProductLimitCommand> productLimits;
+    private List<RegisterProductLocalizationCommand> productLocalizations;
+    private List<RegisterProductVersionCommand> productVersions;
+    private List<RegisterProductFeeStructureCommand> productFeeStructures;
+    private List<RegisterProductRelationshipCommand> productRelationships;
+    private List<RegisterProductDocumentationRequirementCommand> productDocumentationRequirements;
+    private RegisterProductCategoryCommand productCategory;
+    private RegisterProductSubtypeCommand productSubtype;
+    private List<RegisterProductBundleCommand> productBundles;
     private RegisterFeeApplicationRuleCommand feeApplicationRule;
     private RegisterFeeComponentCommand feeComponent;
-    private RegisterProductBundleItemCommand bundleItem;
-    private RegisterProductPricingLocalizationCommand pricingLocalization;
+    private RegisterFeeStructureCommand feeStructure;
+    private RegisterProductBundleItemCommand productBundleItem;
+    private RegisterProductPricingLocalizationCommand productPricingLocalization;
 }

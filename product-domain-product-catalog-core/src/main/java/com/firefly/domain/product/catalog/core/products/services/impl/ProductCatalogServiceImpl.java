@@ -26,7 +26,8 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
     @Override
     public Mono<SagaResult> registerProduct(RegisterProductCommand command) {
         StepInputs inputs = StepInputs.builder()
-                .forStep(RegisterProductSaga::registerProductCategory, command.getCategory())
+                .forStep(RegisterProductSaga::registerProductCategory, command.getProductCategory())
+                .forStep(RegisterProductSaga::registerFeeStructure, command.getFeeStructure())
                 .build();
 
         return engine.execute(RegisterProductSaga.class, inputs);

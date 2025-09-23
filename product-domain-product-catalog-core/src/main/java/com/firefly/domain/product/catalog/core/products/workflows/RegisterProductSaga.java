@@ -1,8 +1,7 @@
 package com.firefly.domain.product.catalog.core.products.workflows;
 
 import com.firefly.common.domain.cqrs.command.CommandBus;
-import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCategoryCommand;
-import com.firefly.domain.product.catalog.core.products.commands.RemoveProductCategoryCommand;
+import com.firefly.domain.product.catalog.core.products.commands.*;
 import com.firefly.transactional.annotations.Saga;
 import com.firefly.transactional.annotations.SagaStep;
 import com.firefly.transactional.annotations.StepEvent;
@@ -13,6 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
+import static com.firefly.domain.product.catalog.core.utils.constants.GlobalConstants.CTX_FEE_STRUCTURE_ID;
 import static com.firefly.domain.product.catalog.core.utils.constants.GlobalConstants.CTX_PRODUCT_CATEGORY_ID;
 import static com.firefly.domain.product.catalog.core.utils.constants.RegisterProductConstants.*;
 
@@ -39,5 +39,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductCategoryCommand(productCategoryId));
     }
 
+    @SagaStep(id = STEP_REGISTER_FEE_STRUCTURE, compensate = COMPENSATE_REMOVE_FEE_STRUCTURE)
+    @StepEvent(type = EVENT_FEE_STRUCTURE_REGISTERED)
+    public Mono<UUID> registerFeeStructure(RegisterFeeStructureCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd)
+                .doOnNext(productCategoryId -> ctx.variables().put(CTX_FEE_STRUCTURE_ID, productCategoryId));
+    }
+
+    public Mono<Void> removeFeeStructure(UUID feeStructureId) {
+        return commandBus.send(new RemoveFeeStructureCommand(feeStructureId));
+    }
 
 }
