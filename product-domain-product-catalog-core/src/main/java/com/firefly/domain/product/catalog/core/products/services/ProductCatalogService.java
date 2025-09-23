@@ -1,5 +1,6 @@
 package com.firefly.domain.product.catalog.core.products.services;
 
+import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.transactional.core.SagaResult;
 import reactor.core.publisher.Mono;
 
@@ -7,12 +8,14 @@ import java.util.UUID;
 
 public interface ProductCatalogService {
 
+
     /**
-     * Define product (purpose, currency, base rules).
+     * Registers a new product with its associated features, pricing, lifecycle, and other configurations.
      *
-     * @return Mono containing the saga result
+     * @param command the command containing the product details and related configurations
+     * @return a Mono containing the result of the saga process
      */
-    Mono<SagaResult> registerProduct();
+    Mono<SagaResult> registerProduct(RegisterProductCommand command);
 
     /**
      * Publish a sellable version (freeze linked configs).

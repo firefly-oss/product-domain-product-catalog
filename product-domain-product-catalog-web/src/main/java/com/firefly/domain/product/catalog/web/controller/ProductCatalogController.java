@@ -1,8 +1,10 @@
 package com.firefly.domain.product.catalog.web.controller;
 
+import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.services.ProductCatalogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,9 @@ public class ProductCatalogController {
     private final ProductCatalogService productCatalogService;
 
     @Operation(summary = "Register product", description = "Define product (purpose, currency, base rules).")
-    @PostMapping("/")
-    public Mono<ResponseEntity<Object>> registerProduct() {
-        return productCatalogService.registerProduct()
+    @PostMapping
+    public Mono<ResponseEntity<Object>> registerProduct(@Valid @RequestBody RegisterProductCommand command) {
+        return productCatalogService.registerProduct(command)
                 .thenReturn(ResponseEntity.ok().build());
     }
 

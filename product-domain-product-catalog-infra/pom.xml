@@ -68,7 +68,7 @@
         </dependency>
         <dependency>
             <groupId>com.firefly</groupId>
-            <artifactId>common-platform-customer-mgmt-sdk</artifactId>
+            <artifactId>common-platform-product-mgmt-sdk</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

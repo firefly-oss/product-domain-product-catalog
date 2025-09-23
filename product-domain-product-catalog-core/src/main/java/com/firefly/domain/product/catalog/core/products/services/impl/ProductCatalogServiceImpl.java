@@ -1,7 +1,13 @@
 package com.firefly.domain.product.catalog.core.products.services.impl;
 
+import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.services.ProductCatalogService;
+import com.firefly.domain.product.catalog.core.products.workflows.RegisterProductSaga;
 import com.firefly.transactional.core.SagaResult;
+import com.firefly.transactional.engine.ExpandEach;
+import com.firefly.transactional.engine.SagaEngine;
+import com.firefly.transactional.engine.StepInputs;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -10,9 +16,20 @@ import java.util.UUID;
 @Service
 public class ProductCatalogServiceImpl implements ProductCatalogService {
 
+    private final SagaEngine engine;
+
+    @Autowired
+    public ProductCatalogServiceImpl(SagaEngine engine){
+        this.engine=engine;
+    }
+
     @Override
-    public Mono<SagaResult> registerProduct() {
-        return Mono.empty();
+    public Mono<SagaResult> registerProduct(RegisterProductCommand command) {
+        StepInputs inputs = StepInputs.builder()
+                .forStep(RegisterProductSaga::registerProductCategory, command.getCategory())
+                .build();
+
+        return engine.execute(RegisterProductSaga.class, inputs);
     }
 
     @Override
