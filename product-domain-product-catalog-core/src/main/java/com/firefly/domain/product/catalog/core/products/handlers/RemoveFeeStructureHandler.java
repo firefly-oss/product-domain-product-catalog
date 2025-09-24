@@ -17,6 +17,6 @@ public class RemoveFeeStructureHandler extends CommandHandler<RemoveFeeStructure
 
     @Override
     protected Mono<Void> doHandle(RemoveFeeStructureCommand cmd) {
-        return feeStructureApi.deleteFeeStructure1(cmd.feeStructureId()).then();
+        return feeStructureApi.deleteFeeStructure(cmd.feeStructureId()).then();
     }
 }

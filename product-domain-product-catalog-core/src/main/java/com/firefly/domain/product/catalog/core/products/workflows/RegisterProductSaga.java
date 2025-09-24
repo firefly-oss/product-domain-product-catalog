@@ -96,4 +96,15 @@ public class RegisterProductSaga {
                 ctx.getVariableAs(CTX_FEE_COMPONENT_ID, UUID.class)));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT, compensate = COMPENSATE_REMOVE_PRODUCT, dependsOn = {STEP_REGISTER_PRODUCT_SUBTYPE})
+    @StepEvent(type = EVENT_PRODUCT_REGISTERED)
+    public Mono<UUID> registerProduct(RegisterProductInfoCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductSubtypeId(ctx.getVariableAs(CTX_PRODUCT_SUBTYPE_ID, UUID.class)))
+                .doOnNext(productId -> ctx.variables().put(CTX_PRODUCT_ID, productId));
+    }
+
+    public Mono<Void> removeProduct(UUID productId) {
+        return commandBus.send(new RemoveProductCommand(productId));
+    }
+
 }

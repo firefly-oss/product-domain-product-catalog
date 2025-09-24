@@ -27,7 +27,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductCommand extends ProductDTO implements Command<UUID> {
-
+    private RegisterProductInfoCommand product;
     private List<RegisterProductFeatureCommand> productFeatures;
     private List<RegisterProductPricingCommand> productPricing;
     private List<RegisterProductDocumentationCommand> productDocumentation;
