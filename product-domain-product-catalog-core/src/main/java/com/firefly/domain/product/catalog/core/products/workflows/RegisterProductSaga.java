@@ -133,4 +133,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductBundleItemCommand(ctx.getVariableAs(CTX_PRODUCT_BUNDLE_ID, UUID.class), productBundleItemId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_PRICING, compensate = COMPENSATE_REMOVE_PRODUCT_PRICING, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_PRICING_REGISTERED)
+    public Mono<UUID> registerProductPricing(RegisterProductPricingCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productPricingId -> ctx.variables().put(CTX_PRODUCT_PRICING_ID, productPricingId));
+    }
+
+    public Mono<Void> removeProductPricing(UUID productPricingId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductPricingCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productPricingId));
+    }
+
 }
