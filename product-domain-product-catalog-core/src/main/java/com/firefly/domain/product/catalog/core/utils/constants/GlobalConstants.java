@@ -16,5 +16,6 @@ public class GlobalConstants {
     public static final String CTX_PRODUCT_RELATIONSHIP_ID = "productRelationshipId";
     public static final String CTX_PRODUCT_DOCUMENTATION_ID = "productDocumentationId";
     public static final String CTX_PRODUCT_DOCUMENTATION_REQUIREMENT_ID = "productDocumentationRequirementId";
+    public static final String CTX_PRODUCT_FEATURES_ID = "productFeaturesId";
 
 }
