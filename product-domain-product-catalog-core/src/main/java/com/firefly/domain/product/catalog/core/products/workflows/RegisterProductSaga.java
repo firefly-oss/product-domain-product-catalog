@@ -232,4 +232,19 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductVersionCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productVersionId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_PRICING_LOCALIZATION, compensate = COMPENSATE_REMOVE_PRODUCT_PRICING_LOCALIZATION, dependsOn = {STEP_REGISTER_PRODUCT, STEP_REGISTER_PRODUCT_PRICING})
+    @StepEvent(type = EVENT_PRODUCT_PRICING_LOCALIZATION_REGISTERED)
+    public Mono<UUID> registerProductPricingLocalization(RegisterProductPricingLocalizationCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd
+                        .withProductPricingId(ctx.getVariableAs(CTX_PRODUCT_PRICING_ID, UUID.class)))
+                .doOnNext(productPricingLocalizationId -> ctx.variables().put(CTX_PRODUCT_PRICING_LOCALIZATION_ID, productPricingLocalizationId));
+    }
+
+    public Mono<Void> removeProductPricingLocalization(UUID productPricingLocalizationId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductPricingLocalizationCommand(
+                ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class),
+                ctx.getVariableAs(CTX_PRODUCT_PRICING_ID, UUID.class),
+                productPricingLocalizationId));
+    }
+
 }

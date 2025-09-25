@@ -15,6 +15,7 @@ import com.firefly.common.product.sdk.api.ProductLifecycleApi;
 import com.firefly.common.product.sdk.api.ProductLimitApi;
 import com.firefly.common.product.sdk.api.ProductLocalizationApi;
 import com.firefly.common.product.sdk.api.ProductPricingApi;
+import com.firefly.common.product.sdk.api.ProductPricingLocalizationApi;
 import com.firefly.common.product.sdk.api.ProductRelationshipApi;
 import com.firefly.common.product.sdk.api.ProductSubtypeApi;
 import com.firefly.common.product.sdk.api.ProductVersionApi;
@@ -127,6 +128,11 @@ public class ClientFactory {
     @Bean
     public ProductVersionApi productVersionApi() {
         return new ProductVersionApi(apiClient);
+    }
+
+    @Bean
+    public ProductPricingLocalizationApi productPricingLocalizationApi() {
+        return new ProductPricingLocalizationApi(apiClient);
     }
 
 }

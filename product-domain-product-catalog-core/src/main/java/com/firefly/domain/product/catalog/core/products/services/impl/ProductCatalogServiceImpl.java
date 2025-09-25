@@ -44,6 +44,8 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerProductLimits, ExpandEach.of(command.getProductLimits()))
                 .forStep(RegisterProductSaga::registerProductLocalization, ExpandEach.of(command.getProductLocalizations()))
                 .forStep(RegisterProductSaga::registerVersion, ExpandEach.of(command.getProductVersions()))
+                .forStep(RegisterProductSaga::registerProductPricingLocalization, command.getProductPricingLocalization())
+
 
 
                 .build();

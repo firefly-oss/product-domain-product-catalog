@@ -24,6 +24,7 @@ public class RegisterProductConstants {
     public static final String STEP_REGISTER_PRODUCT_LIMITS = "registerProductLimits";
     public static final String STEP_REGISTER_PRODUCT_LOCALIZATION = "registerProductLocalization";
     public static final String STEP_REGISTER_VERSION = "registerVersion";
+    public static final String STEP_REGISTER_PRODUCT_PRICING_LOCALIZATION = "registerProductPricingLocalization";
 
 
     // ============================== COMPENSATE METHODS ==============================
@@ -45,6 +46,7 @@ public class RegisterProductConstants {
     public static final String COMPENSATE_REMOVE_PRODUCT_LIMITS = "removeProductLimits";
     public static final String COMPENSATE_REMOVE_PRODUCT_LOCALIZATION = "removeProductLocalization";
     public static final String COMPENSATE_REMOVE_VERSION = "removeVersion";
+    public static final String COMPENSATE_REMOVE_PRODUCT_PRICING_LOCALIZATION = "removeProductPricingLocalization";
 
     // ============================== EVENT TYPES ==============================
     public static final String EVENT_PRODUCT_CATEGORY_REGISTERED = "productCategory.registered";
@@ -65,6 +67,7 @@ public class RegisterProductConstants {
     public static final String EVENT_PRODUCT_LIMITS_REGISTERED = "productLimits.registered";
     public static final String EVENT_PRODUCT_LOCALIZATION_REGISTERED = "productLocalization.registered";
     public static final String EVENT_VERSION_REGISTERED = "version.registered";
+    public static final String EVENT_PRODUCT_PRICING_LOCALIZATION_REGISTERED = "productPricingLocalization.registered";
 
 
 }
