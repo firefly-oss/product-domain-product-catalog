@@ -26,4 +26,10 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductRelationshipCommand extends ProductRelationshipDTO implements Command<UUID> {
+    private UUID productId;
+
+    public RegisterProductRelationshipCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
 }

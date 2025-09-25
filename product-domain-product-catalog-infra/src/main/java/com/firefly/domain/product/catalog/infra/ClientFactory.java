@@ -9,6 +9,7 @@ import com.firefly.common.product.sdk.api.ProductCategoryApi;
 import com.firefly.common.product.sdk.api.ProductFeeComponentApi;
 import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
 import com.firefly.common.product.sdk.api.ProductPricingApi;
+import com.firefly.common.product.sdk.api.ProductRelationshipApi;
 import com.firefly.common.product.sdk.api.ProductSubtypeApi;
 import com.firefly.common.product.sdk.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,11 @@ public class ClientFactory {
     @Bean
     public ProductPricingApi productPricingApi() {
         return new ProductPricingApi(apiClient);
+    }
+
+    @Bean
+    public ProductRelationshipApi productRelationshipApi() {
+        return new ProductRelationshipApi(apiClient);
     }
 
 }
