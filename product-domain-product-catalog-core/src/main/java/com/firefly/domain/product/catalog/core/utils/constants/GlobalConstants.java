@@ -14,5 +14,6 @@ public class GlobalConstants {
     public static final String CTX_PRODUCT_BUNDLE_ITEM_ID = "productBundleItemId";
     public static final String CTX_PRODUCT_PRICING_ID = "productPricingId";
     public static final String CTX_PRODUCT_RELATIONSHIP_ID = "productRelationshipId";
+    public static final String CTX_PRODUCT_DOCUMENTATION_ID = "productDocumentationId";
 
 }

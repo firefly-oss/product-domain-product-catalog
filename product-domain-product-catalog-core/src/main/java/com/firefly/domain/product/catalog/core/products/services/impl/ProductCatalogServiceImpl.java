@@ -37,6 +37,7 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerProductBundleItems, ExpandEach.of(command.getProductBundleItems()))
                 .forStep(RegisterProductSaga::registerProductPricing, command.getProductPricing())
                 .forStep(RegisterProductSaga::registerProductRelationship, ExpandEach.of(command.getProductRelationships()))
+                .forStep(RegisterProductSaga::registerProductDocumentation, ExpandEach.of(command.getProductDocumentation()))
 
 
                 .build();

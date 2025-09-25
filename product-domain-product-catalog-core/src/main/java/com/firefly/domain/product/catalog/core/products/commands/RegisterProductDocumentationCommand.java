@@ -26,4 +26,10 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductDocumentationCommand extends ProductDocumentationDTO implements Command<UUID> {
+    private UUID productId;
+
+    public RegisterProductDocumentationCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
 }
