@@ -26,4 +26,16 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductBundleItemCommand extends ProductBundleItemDTO implements Command<UUID> {
+    private UUID productBundleId;
+    private UUID productId;
+
+    public RegisterProductBundleItemCommand withProductBundleId(UUID productBundleId) {
+        this.setProductBundleId(productBundleId);
+        return this;
+    }
+
+    public RegisterProductBundleItemCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
 }

@@ -120,4 +120,17 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductFeeStructureCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productFeeStructureId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_BUNDLE_ITEMS, compensate = COMPENSATE_REMOVE_PRODUCT_BUNDLE_ITEMS, dependsOn = {STEP_REGISTER_PRODUCT_BUNDLE, STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_BUNDLE_ITEMS_REGISTERED)
+    public Mono<UUID> registerProductBundleItems(RegisterProductBundleItemCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd
+                        .withProductBundleId(ctx.getVariableAs(CTX_PRODUCT_BUNDLE_ID, UUID.class))
+                        .withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productBundleItemId -> ctx.variables().put(CTX_PRODUCT_BUNDLE_ITEM_ID, productBundleItemId));
+    }
+
+    public Mono<Void> removeProductBundleItems(UUID productBundleItemId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductBundleItemCommand(ctx.getVariableAs(CTX_PRODUCT_BUNDLE_ID, UUID.class), productBundleItemId));
+    }
+
 }

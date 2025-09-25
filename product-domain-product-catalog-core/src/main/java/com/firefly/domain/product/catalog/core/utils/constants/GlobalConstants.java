@@ -11,5 +11,6 @@ public class GlobalConstants {
     public static final String CTX_FEE_APPLICATION_RULE_ID = "feeApplicationRuleId";
     public static final String CTX_PRODUCT_ID = "productId";
     public static final String CTX_PRODUCT_FEE_STRUCTURE_ID = "productFeeStructureId";
+    public static final String CTX_PRODUCT_BUNDLE_ITEM_ID = "productBundleItemId";
 
 }

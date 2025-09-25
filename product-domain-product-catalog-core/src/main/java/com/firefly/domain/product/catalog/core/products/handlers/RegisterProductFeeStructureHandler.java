@@ -22,6 +22,6 @@ public class RegisterProductFeeStructureHandler extends CommandHandler<RegisterP
     protected Mono<UUID> doHandle(RegisterProductFeeStructureCommand cmd) {
         return productFeeStructureApi.createFeeStructure(cmd.getProductId(), cmd, UUID.randomUUID().toString())
                 .mapNotNull(productFeeStructureDTO ->
-                        Objects.requireNonNull(Objects.requireNonNull(productFeeStructureDTO)).getFeeStructureId());
+                        Objects.requireNonNull(Objects.requireNonNull(productFeeStructureDTO)).getProductFeeStructureId());
     }
 }
