@@ -33,7 +33,7 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerFeeComponent, command.getFeeComponent())
                 .forStep(RegisterProductSaga::registerFeeApplicationRule, command.getFeeApplicationRule())
                 .forStep(RegisterProductSaga::registerProduct, command.getProduct())
-
+                .forStep(RegisterProductSaga::registerProductFeeStructure, ExpandEach.of(command.getProductFeeStructures()))
                 .build();
 
         return engine.execute(RegisterProductSaga.class, inputs);

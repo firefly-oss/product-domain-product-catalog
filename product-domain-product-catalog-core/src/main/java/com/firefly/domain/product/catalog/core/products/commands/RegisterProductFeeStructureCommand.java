@@ -26,4 +26,16 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductFeeStructureCommand extends ProductFeeStructureDTO implements Command<UUID> {
+    private UUID productId;
+    private UUID feeStructureId;
+
+    public RegisterProductFeeStructureCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
+
+    public RegisterProductFeeStructureCommand withFeeStructureId(UUID feeStructureId) {
+        this.setFeeStructureId(feeStructureId);
+        return this;
+    }
 }

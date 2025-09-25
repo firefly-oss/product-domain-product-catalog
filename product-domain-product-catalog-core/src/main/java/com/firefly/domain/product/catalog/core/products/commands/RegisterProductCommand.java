@@ -29,11 +29,11 @@ import java.util.UUID;
 public class RegisterProductCommand extends ProductDTO implements Command<UUID> {
     private RegisterProductInfoCommand product;
     private List<RegisterProductFeatureCommand> productFeatures;
-    private List<RegisterProductPricingCommand> productPricing;
+    private RegisterProductPricingCommand productPricing;
     private List<RegisterProductDocumentationCommand> productDocumentation;
     private List<RegisterProductLifecycleCommand> productLifecycle;
     private List<RegisterProductLimitCommand> productLimits;
-    private List<RegisterProductLocalizationCommand> productLocalizations;
+    private List<RegisterProductLocalizationCommand> productLocalization;
     private List<RegisterProductVersionCommand> productVersions;
     private List<RegisterProductFeeStructureCommand> productFeeStructures;
     private List<RegisterProductRelationshipCommand> productRelationships;
@@ -44,6 +44,7 @@ public class RegisterProductCommand extends ProductDTO implements Command<UUID> 
     private RegisterFeeApplicationRuleCommand feeApplicationRule;
     private RegisterFeeComponentCommand feeComponent;
     private RegisterFeeStructureCommand feeStructure;
-    private RegisterProductBundleItemCommand productBundleItem;
+    private List<RegisterProductBundleItemCommand> productBundleItems;
     private RegisterProductPricingLocalizationCommand productPricingLocalization;
 }
+

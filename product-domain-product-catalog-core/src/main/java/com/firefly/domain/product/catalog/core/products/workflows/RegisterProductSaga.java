@@ -107,4 +107,17 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductCommand(productId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_FEE_STRUCTURE, compensate = COMPENSATE_REMOVE_PRODUCT_FEE_STRUCTURE, dependsOn = {STEP_REGISTER_PRODUCT, STEP_REGISTER_FEE_STRUCTURE})
+    @StepEvent(type = EVENT_PRODUCT_FEE_STRUCTURE_REGISTERED)
+    public Mono<UUID> registerProductFeeStructure(RegisterProductFeeStructureCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd
+                        .withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class))
+                        .withFeeStructureId(ctx.getVariableAs(CTX_FEE_STRUCTURE_ID, UUID.class)))
+                .doOnNext(productFeeStructureId -> ctx.variables().put(CTX_PRODUCT_FEE_STRUCTURE_ID, productFeeStructureId));
+    }
+
+    public Mono<Void> removeProductFeeStructure(UUID productFeeStructureId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductFeeStructureCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productFeeStructureId));
+    }
+
 }
