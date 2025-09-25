@@ -26,4 +26,10 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductLifecycleCommand extends ProductLifecycleDTO implements Command<UUID> {
+    private UUID productId;
+
+    public RegisterProductLifecycleCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
 }

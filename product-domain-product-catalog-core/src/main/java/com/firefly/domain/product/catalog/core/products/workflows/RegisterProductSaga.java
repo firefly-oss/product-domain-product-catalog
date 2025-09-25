@@ -188,4 +188,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductFeatureCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productFeaturesId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_LIFECYCLE, compensate = COMPENSATE_REMOVE_PRODUCT_LIFECYCLE, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_LIFECYCLE_REGISTERED)
+    public Mono<UUID> registerProductLifecycle(RegisterProductLifecycleCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productLifecycleId -> ctx.variables().put(CTX_PRODUCT_LIFECYCLE_ID, productLifecycleId));
+    }
+
+    public Mono<Void> removeProductLifecycle(UUID productLifecycleId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductLifecycleCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLifecycleId));
+    }
+
 }
