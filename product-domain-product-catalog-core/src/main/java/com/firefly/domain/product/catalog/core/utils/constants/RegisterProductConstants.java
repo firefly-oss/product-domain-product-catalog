@@ -18,6 +18,7 @@ public class RegisterProductConstants {
     public static final String STEP_REGISTER_PRODUCT_PRICING = "registerProductPricing";
     public static final String STEP_REGISTER_PRODUCT_RELATIONSHIP = "registerProductRelationship";
     public static final String STEP_REGISTER_PRODUCT_DOCUMENTATION = "registerProductDocumentation";
+    public static final String STEP_REGISTER_PRODUCT_DOCUMENTATION_REQUIREMENT = "registerProductDocumentationRequirement";
 
 
     // ============================== COMPENSATE METHODS ==============================
@@ -33,6 +34,7 @@ public class RegisterProductConstants {
     public static final String COMPENSATE_REMOVE_PRODUCT_PRICING = "removeProductPricing";
     public static final String COMPENSATE_REMOVE_PRODUCT_RELATIONSHIP = "removeProductRelationship";
     public static final String COMPENSATE_REMOVE_PRODUCT_DOCUMENTATION = "removeProductDocumentation";
+    public static final String COMPENSATE_REMOVE_PRODUCT_DOCUMENTATION_REQUIREMENT = "removeProductDocumentationRequirement";
 
     // ============================== EVENT TYPES ==============================
     public static final String EVENT_PRODUCT_CATEGORY_REGISTERED = "productCategory.registered";
@@ -47,6 +49,7 @@ public class RegisterProductConstants {
     public static final String EVENT_PRODUCT_PRICING_REGISTERED = "productPricing.registered";
     public static final String EVENT_PRODUCT_RELATIONSHIP_REGISTERED = "productRelationship.registered";
     public static final String EVENT_PRODUCT_DOCUMENTATION_REGISTERED = "productDocumentation.registered";
+    public static final String EVENT_PRODUCT_DOCUMENTATION_REQUIREMENT_REGISTERED = "productDocumentationRequirement.registered";
 
 
 }

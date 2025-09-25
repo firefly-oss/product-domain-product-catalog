@@ -166,4 +166,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductDocumentationCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productDocumentationId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_DOCUMENTATION_REQUIREMENT, compensate = COMPENSATE_REMOVE_PRODUCT_DOCUMENTATION_REQUIREMENT, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_DOCUMENTATION_REQUIREMENT_REGISTERED)
+    public Mono<UUID> registerProductDocumentationRequirement(RegisterProductDocumentationRequirementCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productDocumentationRequirementId -> ctx.variables().put(CTX_PRODUCT_DOCUMENTATION_REQUIREMENT_ID, productDocumentationRequirementId));
+    }
+
+    public Mono<Void> removeProductDocumentationRequirement(UUID productDocumentationRequirementId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductDocumentationRequirementCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productDocumentationRequirementId));
+    }
+
 }

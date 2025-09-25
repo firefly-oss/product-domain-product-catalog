@@ -7,6 +7,7 @@ import com.firefly.common.product.sdk.api.ProductBundleApi;
 import com.firefly.common.product.sdk.api.ProductBundleItemApi;
 import com.firefly.common.product.sdk.api.ProductCategoryApi;
 import com.firefly.common.product.sdk.api.ProductDocumentationApi;
+import com.firefly.common.product.sdk.api.ProductDocumentationRequirementsApi;
 import com.firefly.common.product.sdk.api.ProductFeeComponentApi;
 import com.firefly.common.product.sdk.api.ProductFeeStructureApi;
 import com.firefly.common.product.sdk.api.ProductPricingApi;
@@ -91,6 +92,11 @@ public class ClientFactory {
     @Bean
     public ProductDocumentationApi productDocumentationApi() {
         return new ProductDocumentationApi(apiClient);
+    }
+
+    @Bean
+    public ProductDocumentationRequirementsApi productDocumentationRequirementsApi() {
+        return new ProductDocumentationRequirementsApi(apiClient);
     }
 
 }
