@@ -26,4 +26,10 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class RegisterProductLimitCommand extends ProductLimitDTO implements Command<UUID> {
+    private UUID productId;
+
+    public RegisterProductLimitCommand withProductId(UUID productId) {
+        this.setProductId(productId);
+        return this;
+    }
 }

@@ -199,4 +199,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductLifecycleCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLifecycleId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_LIMITS, compensate = COMPENSATE_REMOVE_PRODUCT_LIMITS, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_LIMITS_REGISTERED)
+    public Mono<UUID> registerProductLimits(RegisterProductLimitCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productLimitsId -> ctx.variables().put(CTX_PRODUCT_LIMITS_ID, productLimitsId));
+    }
+
+    public Mono<Void> removeProductLimits(UUID productLimitsId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductLimitCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLimitsId));
+    }
+
 }
