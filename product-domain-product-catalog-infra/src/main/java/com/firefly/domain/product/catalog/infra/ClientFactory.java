@@ -17,6 +17,7 @@ import com.firefly.common.product.sdk.api.ProductLocalizationApi;
 import com.firefly.common.product.sdk.api.ProductPricingApi;
 import com.firefly.common.product.sdk.api.ProductRelationshipApi;
 import com.firefly.common.product.sdk.api.ProductSubtypeApi;
+import com.firefly.common.product.sdk.api.ProductVersionApi;
 import com.firefly.common.product.sdk.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -121,6 +122,11 @@ public class ClientFactory {
     @Bean
     public ProductLocalizationApi productLocalizationApi() {
         return new ProductLocalizationApi(apiClient);
+    }
+
+    @Bean
+    public ProductVersionApi productVersionApi() {
+        return new ProductVersionApi(apiClient);
     }
 
 }

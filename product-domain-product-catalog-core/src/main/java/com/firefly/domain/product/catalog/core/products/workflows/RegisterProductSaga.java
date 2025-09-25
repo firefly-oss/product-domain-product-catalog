@@ -221,4 +221,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductLocalizationCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLocalizationId));
     }
 
+    @SagaStep(id = STEP_REGISTER_VERSION, compensate = COMPENSATE_REMOVE_VERSION, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_VERSION_REGISTERED)
+    public Mono<UUID> registerVersion(RegisterProductVersionCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productVersionId -> ctx.variables().put(CTX_PRODUCT_VERSION_ID, productVersionId));
+    }
+
+    public Mono<Void> removeVersion(UUID productVersionId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductVersionCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productVersionId));
+    }
+
 }

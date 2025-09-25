@@ -20,5 +20,6 @@ public class GlobalConstants {
     public static final String CTX_PRODUCT_LIFECYCLE_ID = "productLifecycleId";
     public static final String CTX_PRODUCT_LIMITS_ID = "productLimitsId";
     public static final String CTX_PRODUCT_LOCALIZATION_ID = "productLocalizationId";
+    public static final String CTX_PRODUCT_VERSION_ID = "productVersionId";
 
 }
