@@ -1,8 +1,12 @@
 package com.firefly.domain.product.catalog.core.products.services.impl;
 
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
+import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
+import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
 import com.firefly.domain.product.catalog.core.products.services.ProductCatalogService;
+import com.firefly.domain.product.catalog.core.products.workflows.RegisterProductFeeStructureSaga;
 import com.firefly.domain.product.catalog.core.products.workflows.RegisterProductSaga;
+import com.firefly.domain.product.catalog.core.products.workflows.UpdateProductSaga;
 import com.firefly.transactional.core.SagaResult;
 import com.firefly.transactional.engine.ExpandEach;
 import com.firefly.transactional.engine.SagaEngine;
@@ -54,27 +58,18 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
     }
 
     @Override
-    public Mono<SagaResult> publish(UUID productId) {
-        return Mono.empty();
+    public Mono<SagaResult> updateProduct(UpdateProductInfoCommand updateProductInfoCommand) {
+        StepInputs inputs = StepInputs.builder()
+                .forStep(UpdateProductSaga::updateProduct, updateProductInfoCommand)
+                .build();
+        return engine.execute(UpdateProductSaga.class, inputs);
     }
 
     @Override
-    public Mono<SagaResult> suspend(UUID productId) {
-        return Mono.empty();
-    }
-
-    @Override
-    public Mono<SagaResult> resume(UUID productId) {
-        return Mono.empty();
-    }
-
-    @Override
-    public Mono<SagaResult> retire(UUID productId) {
-        return Mono.empty();
-    }
-
-    @Override
-    public Mono<SagaResult> linkPostingRuleSet(UUID productId) {
-        return Mono.empty();
+    public Mono<SagaResult> linkPostingRuleSet(RegisterProductFeeStructureCommand registerProductFeeStructureCommand) {
+        StepInputs inputs = StepInputs.builder()
+                .forStep(RegisterProductFeeStructureSaga::registerProductFeeStructure, registerProductFeeStructureCommand)
+                .build();
+        return engine.execute(RegisterProductFeeStructureSaga.class, inputs);
     }
 }

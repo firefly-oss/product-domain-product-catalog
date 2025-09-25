@@ -24,9 +24,8 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class RegisterProductCommand extends ProductDTO implements Command<UUID> {
+public class RegisterProductCommand implements Command<UUID> {
     private RegisterProductInfoCommand product;
     private List<RegisterProductFeatureCommand> productFeatures;
     private RegisterProductPricingCommand productPricing;
