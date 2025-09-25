@@ -33,7 +33,7 @@ public class RegisterProductCommand extends ProductDTO implements Command<UUID> 
     private List<RegisterProductDocumentationCommand> productDocumentation;
     private List<RegisterProductLifecycleCommand> productLifecycle;
     private List<RegisterProductLimitCommand> productLimits;
-    private List<RegisterProductLocalizationCommand> productLocalization;
+    private List<RegisterProductLocalizationCommand> productLocalizations;
     private List<RegisterProductVersionCommand> productVersions;
     private List<RegisterProductFeeStructureCommand> productFeeStructures;
     private List<RegisterProductRelationshipCommand> productRelationships;

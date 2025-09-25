@@ -210,4 +210,15 @@ public class RegisterProductSaga {
         return commandBus.send(new RemoveProductLimitCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLimitsId));
     }
 
+    @SagaStep(id = STEP_REGISTER_PRODUCT_LOCALIZATION, compensate = COMPENSATE_REMOVE_PRODUCT_LOCALIZATION, dependsOn = {STEP_REGISTER_PRODUCT})
+    @StepEvent(type = EVENT_PRODUCT_LOCALIZATION_REGISTERED)
+    public Mono<UUID> registerProductLocalization(RegisterProductLocalizationCommand cmd, SagaContext ctx) {
+        return commandBus.send(cmd.withProductId(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class)))
+                .doOnNext(productLocalizationId -> ctx.variables().put(CTX_PRODUCT_LOCALIZATION_ID, productLocalizationId));
+    }
+
+    public Mono<Void> removeProductLocalization(UUID productLocalizationId, SagaContext ctx) {
+        return commandBus.send(new RemoveProductLocalizationCommand(ctx.getVariableAs(CTX_PRODUCT_ID, UUID.class), productLocalizationId));
+    }
+
 }

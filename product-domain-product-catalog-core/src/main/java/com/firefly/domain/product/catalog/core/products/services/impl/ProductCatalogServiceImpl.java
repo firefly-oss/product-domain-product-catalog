@@ -42,6 +42,7 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerProductFeatures, ExpandEach.of(command.getProductFeatures()))
                 .forStep(RegisterProductSaga::registerProductLifecycle, ExpandEach.of(command.getProductLifecycle()))
                 .forStep(RegisterProductSaga::registerProductLimits, ExpandEach.of(command.getProductLimits()))
+                .forStep(RegisterProductSaga::registerProductLocalization, ExpandEach.of(command.getProductLocalizations()))
 
 
                 .build();
