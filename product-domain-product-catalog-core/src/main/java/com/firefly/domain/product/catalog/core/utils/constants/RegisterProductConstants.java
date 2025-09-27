@@ -6,6 +6,7 @@ public class RegisterProductConstants {
     public static final String SAGA_REGISTER_PRODUCT = "RegisterProductSaga";
     public static final String SAGA_UPDATE_PRODUCT = "UpdateProductSaga";
     public static final String SAGA_REGISTER_PRODUCT_FEE_STRUCTURE = "RegisterProductFeeStructureSaga";
+    public static final String SAGA_GET_PRODUCT_INFO = "SAGA_GET_PRODUCT_INFO";
 
 
     // ============================== STEP IDENTIFIERS ==============================
@@ -29,6 +30,7 @@ public class RegisterProductConstants {
     public static final String STEP_REGISTER_VERSION = "registerVersion";
     public static final String STEP_REGISTER_PRODUCT_PRICING_LOCALIZATION = "registerProductPricingLocalization";
     public static final String STEP_UPDATE_PRODUCT = "updateProduct";
+    public static final String STEP_GET_PRODUCT_INFO = "getProductInfo";
 
 
     // ============================== COMPENSATE METHODS ==============================
@@ -73,6 +75,7 @@ public class RegisterProductConstants {
     public static final String EVENT_VERSION_REGISTERED = "version.registered";
     public static final String EVENT_PRODUCT_PRICING_LOCALIZATION_REGISTERED = "productPricingLocalization.registered";
     public static final String EVENT_PRODUCT_UPDATED = "product.updated";
+    public static final String EVENT_PRODUCT_INFO_RETRIEVED = "product.retrieved";
 
 
 }

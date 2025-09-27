@@ -3,7 +3,9 @@ package com.firefly.domain.product.catalog.core.products.services.impl;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
+import com.firefly.domain.product.catalog.core.products.queries.ProductQuery;
 import com.firefly.domain.product.catalog.core.products.services.ProductCatalogService;
+import com.firefly.domain.product.catalog.core.products.workflows.GetProductInfoSaga;
 import com.firefly.domain.product.catalog.core.products.workflows.RegisterProductFeeStructureSaga;
 import com.firefly.domain.product.catalog.core.products.workflows.RegisterProductSaga;
 import com.firefly.domain.product.catalog.core.products.workflows.UpdateProductSaga;
@@ -71,5 +73,17 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductFeeStructureSaga::registerProductFeeStructure, registerProductFeeStructureCommand)
                 .build();
         return engine.execute(RegisterProductFeeStructureSaga.class, inputs);
+    }
+
+    @Override
+    public Mono<ProductQuery> getProductInfo(UUID productId) {
+        ProductQuery query = new ProductQuery();
+        
+        StepInputs inputs = StepInputs.builder()
+                .forStep(GetProductInfoSaga::getProductInfo, query.withProductId(productId))
+                .build();
+        
+        return engine.execute(GetProductInfoSaga.class, inputs)
+                .map(result -> query);
     }
 }

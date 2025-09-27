@@ -4,6 +4,7 @@ import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
+import com.firefly.domain.product.catalog.core.products.queries.ProductQuery;
 import com.firefly.domain.product.catalog.core.products.services.ProductCatalogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -72,5 +73,12 @@ public class ProductCatalogController {
                                                            @Valid @RequestBody RegisterProductFeeStructureCommand command) {
         return productCatalogService.linkPostingRuleSet(command.withProductId(productId))
                 .thenReturn(ResponseEntity.ok().build());
+    }
+
+    @Operation(summary = "Get product info", description = "Retrieve product information by product ID.")
+    @GetMapping("/{productId}")
+    public Mono<ResponseEntity<ProductQuery>> getProductInfo(@PathVariable UUID productId) {
+        return productCatalogService.getProductInfo(productId)
+                .map(ResponseEntity::ok);
     }
 }

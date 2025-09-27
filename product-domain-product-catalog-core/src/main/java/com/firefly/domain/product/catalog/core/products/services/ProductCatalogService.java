@@ -3,6 +3,7 @@ package com.firefly.domain.product.catalog.core.products.services;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
+import com.firefly.domain.product.catalog.core.products.queries.ProductQuery;
 import com.firefly.transactional.core.SagaResult;
 import reactor.core.publisher.Mono;
 
@@ -35,4 +36,12 @@ public interface ProductCatalogService {
      * @return a Mono containing the result of the saga process, representing the outcome of the operation
      */
     Mono<SagaResult> linkPostingRuleSet(RegisterProductFeeStructureCommand command);
+
+    /**
+     * Retrieves product information based on the provided product ID.
+     *
+     * @param productId the ID of the product to retrieve information for
+     * @return a Mono containing the ProductQuery with product information
+     */
+    Mono<ProductQuery> getProductInfo(UUID productId);
 }
