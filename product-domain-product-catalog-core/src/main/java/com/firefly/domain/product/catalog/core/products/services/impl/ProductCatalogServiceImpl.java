@@ -1,5 +1,7 @@
 package com.firefly.domain.product.catalog.core.products.services.impl;
 
+import com.firefly.common.domain.cqrs.query.QueryBus;
+import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
@@ -23,10 +25,13 @@ import java.util.UUID;
 public class ProductCatalogServiceImpl implements ProductCatalogService {
 
     private final SagaEngine engine;
+    private final QueryBus queryBus;
+
 
     @Autowired
-    public ProductCatalogServiceImpl(SagaEngine engine){
+    public ProductCatalogServiceImpl(SagaEngine engine, QueryBus queryBus){
         this.engine=engine;
+        this.queryBus = queryBus;
     }
 
     @Override
@@ -52,8 +57,6 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
                 .forStep(RegisterProductSaga::registerVersion, ExpandEach.of(command.getProductVersions()))
                 .forStep(RegisterProductSaga::registerProductPricingLocalization, command.getProductPricingLocalization())
 
-
-
                 .build();
 
         return engine.execute(RegisterProductSaga.class, inputs);
@@ -76,14 +79,8 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
     }
 
     @Override
-    public Mono<ProductQuery> getProductInfo(UUID productId) {
+    public Mono<ProductDTO> getProductInfo(UUID productId) {
         ProductQuery query = new ProductQuery();
-        
-        StepInputs inputs = StepInputs.builder()
-                .forStep(GetProductInfoSaga::getProductInfo, query.withProductId(productId))
-                .build();
-        
-        return engine.execute(GetProductInfoSaga.class, inputs)
-                .map(result -> query);
+        return queryBus.query(query.withProductId(productId));
     }
 }

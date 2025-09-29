@@ -1,5 +1,6 @@
 package com.firefly.domain.product.catalog.core.products.services;
 
+import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
@@ -43,5 +44,5 @@ public interface ProductCatalogService {
      * @param productId the ID of the product to retrieve information for
      * @return a Mono containing the ProductQuery with product information
      */
-    Mono<ProductQuery> getProductInfo(UUID productId);
+    Mono<ProductDTO> getProductInfo(UUID productId);
 }

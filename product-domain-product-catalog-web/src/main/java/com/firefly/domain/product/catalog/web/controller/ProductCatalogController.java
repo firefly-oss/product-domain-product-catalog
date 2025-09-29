@@ -77,7 +77,7 @@ public class ProductCatalogController {
 
     @Operation(summary = "Get product info", description = "Retrieve product information by product ID.")
     @GetMapping("/{productId}")
-    public Mono<ResponseEntity<ProductQuery>> getProductInfo(@PathVariable UUID productId) {
+    public Mono<ResponseEntity<ProductDTO>> getProductInfo(@PathVariable UUID productId) {
         return productCatalogService.getProductInfo(productId)
                 .map(ResponseEntity::ok);
     }
