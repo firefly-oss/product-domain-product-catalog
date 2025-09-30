@@ -80,7 +80,6 @@ public class ProductCatalogServiceImpl implements ProductCatalogService {
 
     @Override
     public Mono<ProductDTO> getProductInfo(UUID productId) {
-        ProductQuery query = new ProductQuery();
-        return queryBus.query(query.withProductId(productId));
+        return queryBus.query(ProductQuery.builder().productId(productId).build());
     }
 }
