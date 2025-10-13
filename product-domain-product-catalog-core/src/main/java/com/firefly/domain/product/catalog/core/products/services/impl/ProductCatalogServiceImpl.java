@@ -1,6 +1,6 @@
 package com.firefly.domain.product.catalog.core.products.services.impl;
 
-import com.firefly.common.domain.cqrs.query.QueryBus;
+import com.firefly.common.cqrs.query.QueryBus;
 import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;

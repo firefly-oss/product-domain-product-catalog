@@ -1,6 +1,6 @@
 package com.firefly.domain.product.catalog.core.products.queries;
 
-import com.firefly.common.domain.cqrs.query.Query;
+import com.firefly.common.cqrs.query.Query;
 import com.firefly.common.product.sdk.model.ProductDTO;
 import lombok.Builder;
 import lombok.Data;

@@ -1,9 +1,9 @@
 package com.firefly.domain.product.catalog.core.products.handlers;
 
-import com.firefly.common.domain.cqrs.annotations.CommandHandlerComponent;
-import com.firefly.common.domain.cqrs.annotations.QueryHandlerComponent;
-import com.firefly.common.domain.cqrs.command.CommandHandler;
-import com.firefly.common.domain.cqrs.query.QueryHandler;
+import com.firefly.common.cqrs.annotations.CommandHandlerComponent;
+import com.firefly.common.cqrs.annotations.QueryHandlerComponent;
+import com.firefly.common.cqrs.command.CommandHandler;
+import com.firefly.common.cqrs.query.QueryHandler;
 import com.firefly.common.product.sdk.api.ProductApi;
 import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
