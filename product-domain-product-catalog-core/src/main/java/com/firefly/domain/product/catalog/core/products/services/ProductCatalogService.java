@@ -1,11 +1,10 @@
 package com.firefly.domain.product.catalog.core.products.services;
+import com.firefly.transactional.saga.core.SagaResult;
 
 import com.firefly.common.product.sdk.model.ProductDTO;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductCommand;
 import com.firefly.domain.product.catalog.core.products.commands.RegisterProductFeeStructureCommand;
 import com.firefly.domain.product.catalog.core.products.commands.UpdateProductInfoCommand;
-import com.firefly.domain.product.catalog.core.products.queries.ProductQuery;
-import com.firefly.transactional.core.SagaResult;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
